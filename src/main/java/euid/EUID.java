@@ -4,6 +4,10 @@ import euid.exception.InvalidCharacterException;
 import euid.exception.InvalidCheckmodException;
 import euid.exception.InvalidLengthException;
 
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -61,6 +65,30 @@ public final class EUID implements Comparable<EUID> {
 
     public long timestamp() {
         return ((hi >>> 19) & Time.TIMESTAMP_BITMASK);
+    }
+
+    public LocalDateTime localDateTime() {
+        return Time.toLocalDateTime(timestamp(), ZoneId.systemDefault());
+    }
+
+    public LocalDateTime localDateTime(final ZoneId zoneId) {
+        return Time.toLocalDateTime(timestamp(), zoneId);
+    }
+
+    public ZonedDateTime zonedDateTime() {
+        return Time.toZonedDateTime(timestamp(), ZoneId.systemDefault());
+    }
+
+    public ZonedDateTime zonedDateTime(final ZoneId zoneId) {
+        return Time.toZonedDateTime(timestamp(), zoneId);
+    }
+
+    public OffsetDateTime offsetDateTime() {
+        return Time.toOffsetDateTime(timestamp(), ZoneId.systemDefault());
+    }
+
+    public OffsetDateTime offsetDateTime(final ZoneId zoneId) {
+        return Time.toOffsetDateTime(timestamp(), zoneId);
     }
 
     public Optional<Integer> extension() {

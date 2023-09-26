@@ -14,8 +14,8 @@ class Time {
         return System.currentTimeMillis();
     }
 
-    static LocalDateTime toLocalDateTime(final long timestamp) {
-        return LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), ZoneId.systemDefault());
+    static LocalDateTime toLocalDateTime(final long timestamp, final ZoneId zoneId) {
+        return LocalDateTime.ofInstant(Instant.ofEpochMilli(timestamp), zoneId);
     }
 
     static ZonedDateTime toZonedDateTime(final long timestamp, final ZoneId zoneId) {

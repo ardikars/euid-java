@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.security.SecureRandom;
+import java.time.*;
 import java.util.*;
 
 class EUIDTest {
@@ -219,5 +220,19 @@ class EUIDTest {
         Assertions.assertFalse(euid.equals(""));
         Assertions.assertFalse(euid.equals(null));
         Assertions.assertNotNull(euid1.hashCode());
+    }
+
+    @Test
+    void dateTime() {
+        final EUID euid = EUID.create().get();
+        final ZoneId zoneId = ZoneId.systemDefault();
+        final long timestamp = euid.timestamp();
+        Assertions.assertTrue(timestamp <= Time.TIMESTAMP_BITMASK);
+        final LocalDateTime local = euid.localDateTime(zoneId);
+        final ZonedDateTime zoned = euid.zonedDateTime(zoneId);
+        final OffsetDateTime offset = euid.offsetDateTime(zoneId);
+        Assertions.assertEquals(euid.localDateTime(), local);
+        Assertions.assertEquals(euid.zonedDateTime(), zoned);
+        Assertions.assertEquals(euid.offsetDateTime(), offset);
     }
 }

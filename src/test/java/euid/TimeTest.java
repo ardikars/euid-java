@@ -23,7 +23,7 @@ class TimeTest {
     void toDateTime() {
         final ZoneId zoneId = ZoneId.systemDefault();
         final long timestamp = System.currentTimeMillis();
-        final LocalDateTime local = Time.toLocalDateTime(timestamp);
+        final LocalDateTime local = Time.toLocalDateTime(timestamp, zoneId);
         final ZonedDateTime zoned = Time.toZonedDateTime(timestamp, zoneId);
         final OffsetDateTime offset = Time.toOffsetDateTime(timestamp, zoneId);
         Assertions.assertEquals(Instant.ofEpochMilli(timestamp).atZone(zoneId).toLocalDateTime(), local);

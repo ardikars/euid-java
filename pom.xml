@@ -10,7 +10,7 @@
 
     <groupId>com.ardikars.euid</groupId>
     <artifactId>euid</artifactId>
-    <version>0.1.0-B0</version>
+    <version>0.1.0-B2</version>
 
     <developers>
         <developer>
@@ -86,38 +86,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>codes.rafael.modulemaker</groupId>
-                <artifactId>modulemaker-maven-plugin</artifactId>
-                <version>${modulemaker-maven-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.ow2.asm</groupId>
-                        <artifactId>asm</artifactId>
-                        <version>${asm.version}</version>
-                    </dependency>
-                </dependencies>
-                <configuration>
-                    <name>euid</name>
-                    <multirelease>false</multirelease>
-                    <packages>
-                        euid.
-                        euid.exception
-                    </packages>
-                    <exports>
-                        euid,
-                        euid.exception
-                    </exports>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>inject-module</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.10</version>
@@ -178,6 +146,9 @@
                                 </manifest>
                                 <manifestEntries>
                                     <Multi-Release>false</Multi-Release>
+                                </manifestEntries>
+                                <manifestEntries>
+                                    <Automatic-Module-Name>euid</Automatic-Module-Name>
                                 </manifestEntries>
                             </archive>
                         </configuration>
