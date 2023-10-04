@@ -119,7 +119,9 @@ class EUIDTest {
         for (int i = 0; i < EUID.EXT_DATA_BITMASK; i++) {
             final EUID euid = EUID.createWithExtension(i).orElse(EUID.MIN);
             final String encoded = euid.toString();
+            final byte[] bytes = euid.toBytes();
             Assertions.assertEquals(27, encoded.length());
+            Assertions.assertEquals(euid, EUID.fromBytes(bytes));
             final EUID decoded = EUID.fromStringUnchecked(encoded).orElse(EUID.MIN);
             Assertions.assertEquals(decoded, EUID.fromString(encoded));
             Assertions.assertArrayEquals(euid.toBytes(), decoded.toBytes());

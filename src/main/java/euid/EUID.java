@@ -46,6 +46,29 @@ public final class EUID implements Comparable<EUID> {
         return new EUID(decode[0], decode[1]);
     }
 
+    public static EUID fromBytes(final byte[] bytes) throws InvalidLengthException {
+        if (bytes == null || bytes.length != 16) {
+            throw new InvalidLengthException(bytes == null ? 0 : bytes.length, 16);
+        }
+        final long hi = (((bytes[0] & 0xFFL) << 56L) //
+                | ((bytes[1] & 0xFFL) << 48L) //
+                | ((bytes[2] & 0xFFL) << 40L) //
+                | ((bytes[3] & 0xFFL) << 32L) //
+                | ((bytes[4] & 0xFFL) << 24L) //
+                | ((bytes[5] & 0xFFL) << 16L) //
+                | ((bytes[6] & 0xFFL) << 8L) //
+                | (bytes[7] & 0xFFL)); //
+        final long lo = (((bytes[8] & 0xFFL) << 56L) //
+                | ((bytes[9] & 0xFFL) << 48L) //
+                | ((bytes[10] & 0xFFL) << 40L) //
+                | ((bytes[11] & 0xFFL) << 32L) //
+                | ((bytes[12] & 0xFFL) << 24L) //
+                | ((bytes[13] & 0xFFL) << 16L) //
+                | ((bytes[14] & 0xFFL) << 8L) //
+                | (bytes[15] & 0xFFL)); //
+        return new EUID(hi, lo);
+    }
+
     public static Optional<EUID> fromStringUnchecked(final String str) {
         try {
             final long[] decode = Base32.decode(str);
@@ -119,22 +142,22 @@ public final class EUID implements Comparable<EUID> {
 
     public byte[] toBytes() {
         final byte[] bytes = new byte[16];
-        bytes[0] = (byte) ((this.hi >> 56) & 0xff);
-        bytes[1] = (byte) ((this.hi >> 48) & 0xff);
-        bytes[2] = (byte) ((this.hi >> 40) & 0xff);
-        bytes[3] = (byte) ((this.hi >> 32) & 0xff);
-        bytes[4] = (byte) ((this.hi >> 24) & 0xff);
-        bytes[5] = (byte) ((this.hi >> 16) & 0xff);
-        bytes[6] = (byte) ((this.hi >> 8) & 0xff);
+        bytes[0] = (byte) ((this.hi >>> 56) & 0xff);
+        bytes[1] = (byte) ((this.hi >>> 48) & 0xff);
+        bytes[2] = (byte) ((this.hi >>> 40) & 0xff);
+        bytes[3] = (byte) ((this.hi >>> 32) & 0xff);
+        bytes[4] = (byte) ((this.hi >>> 24) & 0xff);
+        bytes[5] = (byte) ((this.hi >>> 16) & 0xff);
+        bytes[6] = (byte) ((this.hi >>> 8) & 0xff);
         bytes[7] = (byte) (this.hi & 0xff);
-        bytes[8] = (byte) ((this.hi >> 56) & 0xff);
-        bytes[9] = (byte) ((this.hi >> 48) & 0xff);
-        bytes[10] = (byte) ((this.hi >> 40) & 0xff);
-        bytes[11] = (byte) ((this.hi >> 32) & 0xff);
-        bytes[12] = (byte) ((this.hi >> 24) & 0xff);
-        bytes[13] = (byte) ((this.hi >> 16) & 0xff);
-        bytes[14] = (byte) ((this.hi >> 8) & 0xff);
-        bytes[15] = (byte) (this.hi & 0xff);
+        bytes[8] = (byte) ((this.lo >>> 56) & 0xff);
+        bytes[9] = (byte) ((this.lo >>> 48) & 0xff);
+        bytes[10] = (byte) ((this.lo >>> 40) & 0xff);
+        bytes[11] = (byte) ((this.lo >>> 32) & 0xff);
+        bytes[12] = (byte) ((this.lo >>> 24) & 0xff);
+        bytes[13] = (byte) ((this.lo >>> 16) & 0xff);
+        bytes[14] = (byte) ((this.lo >>> 8) & 0xff);
+        bytes[15] = (byte) (this.lo & 0xff);
         return bytes;
     }
 
