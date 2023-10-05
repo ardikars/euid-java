@@ -122,6 +122,8 @@ class EUIDTest {
             final byte[] bytes = euid.toBytes();
             Assertions.assertEquals(27, encoded.length());
             Assertions.assertEquals(euid, EUID.fromBytes(bytes));
+            Assertions.assertThrows(InvalidLengthException.class, () -> EUID.fromBytes(null));
+            Assertions.assertThrows(InvalidLengthException.class, () -> EUID.fromBytes(new byte[0]));
             final EUID decoded = EUID.fromStringUnchecked(encoded).orElse(EUID.MIN);
             Assertions.assertEquals(decoded, EUID.fromString(encoded));
             Assertions.assertArrayEquals(euid.toBytes(), decoded.toBytes());
