@@ -1,6 +1,11 @@
 package euid;
 
-import java.time.*;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 class Time {
 
@@ -24,5 +29,9 @@ class Time {
 
     static OffsetDateTime toOffsetDateTime(final long timestamp, final ZoneId zoneId) {
         return OffsetDateTime.ofInstant(Instant.ofEpochMilli(timestamp), zoneId);
+    }
+
+    static Date toDate(final long timestamp) {
+        return new Date(timestamp);
     }
 }

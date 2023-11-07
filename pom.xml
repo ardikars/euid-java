@@ -6,11 +6,11 @@
 
     <name>EUID</name>
     <description>EUID for Java</description>
-    <url>https://github.com/ardikars/euid-java</url>
+    <url>https://github.com/ardikars/euid</url>
 
     <groupId>com.ardikars.euid</groupId>
     <artifactId>euid</artifactId>
-    <version>0.1.0-B3</version>
+    <version>0.1.0-B4</version>
 
     <developers>
         <developer>
@@ -21,9 +21,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:ardikars/euid-java.git</connection>
-        <developerConnection>scm:git:git@github.com:ardikars/euid-java.git</developerConnection>
-        <url>https://github.com/ardikars/euid-java</url>
+        <connection>scm:git:git@github.com:ardikars/euid.git</connection>
+        <developerConnection>scm:git:git@github.com:ardikars/euid.git</developerConnection>
+        <url>https://github.com/ardikars/euid</url>
     </scm>
 
     <licenses>
@@ -37,10 +37,11 @@
     <inceptionYear>2023</inceptionYear>
 
     <properties>
-        <junit.jupiter.api.version>5.9.1</junit.jupiter.api.version>
-        <junit.platform.suite.version>1.9.1</junit.platform.suite.version>
-        <modulemaker-maven-plugin.version>1.9</modulemaker-maven-plugin.version>
-        <asm.version>9.4</asm.version>
+        <junit.jupiter.api.version>5.10.1</junit.jupiter.api.version>
+        <junit.platform.version>1.10.1</junit.platform.version>
+        <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
+        <jacoco.maven.plugin.version>0.8.11</jacoco.maven.plugin.version>
+        <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
         <nexus.staging.maven.plugin.version>1.6.13</nexus.staging.maven.plugin.version>
     </properties>
 
@@ -61,14 +62,14 @@
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-api</artifactId>
-            <version>${junit.platform.suite.version}</version>
+            <version>${junit.platform.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-suite-engine</artifactId>
-            <version>${junit.platform.suite.version}</version>
-            <scope>runtime</scope>
+            <version>${junit.platform.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -77,7 +78,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <compilerVersion>1.8</compilerVersion>
                     <source>1.8</source>
@@ -88,7 +89,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.10</version>
+                <version>${jacoco.maven.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
@@ -137,6 +138,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-jar-plugin</artifactId>
+                        <version>${maven.jar.plugin.version}</version>
                         <configuration>
                             <archive>
                                 <addMavenDescriptor>false</addMavenDescriptor>
@@ -177,7 +179,7 @@
                             <charset>UTF-8</charset>
                             <locale>en_US</locale>
                             <header>${project.name} ${project.version}</header>
-                            <footer>https://github.com/ardikars/euid-java</footer>
+                            <footer>https://github.com/ardikars/euid</footer>
                             <windowtitle>${project.name} ${project.version}</windowtitle>
                             <bottom>Copyleft &amp;#169; 2019&amp;#x2019;{currentYear} euid.ardikars.github.io. All rights
                                 reserved.

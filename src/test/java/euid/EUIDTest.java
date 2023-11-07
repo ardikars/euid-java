@@ -238,5 +238,9 @@ class EUIDTest {
         Assertions.assertEquals(euid.localDateTime(), local);
         Assertions.assertEquals(euid.zonedDateTime(), zoned);
         Assertions.assertEquals(euid.offsetDateTime(), offset);
+        Assertions.assertEquals(euid.localDate(), local.toLocalDate());
+        Assertions.assertEquals(euid.localTime(), local.toLocalTime());
+        Assertions.assertEquals(euid.localDate(zoneId), local.toLocalDate());
+        Assertions.assertEquals(euid.localTime(zoneId), local.toLocalTime());
     }
 }

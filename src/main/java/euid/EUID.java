@@ -4,7 +4,9 @@ import euid.exception.InvalidCharacterException;
 import euid.exception.InvalidCheckmodException;
 import euid.exception.InvalidLengthException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -94,8 +96,24 @@ public final class EUID implements Comparable<EUID> {
         return Time.toLocalDateTime(timestamp(), ZoneId.systemDefault());
     }
 
+    public LocalDate localDate() {
+        return localDateTime().toLocalDate();
+    }
+
+    public LocalTime localTime() {
+        return localDateTime().toLocalTime();
+    }
+
     public LocalDateTime localDateTime(final ZoneId zoneId) {
         return Time.toLocalDateTime(timestamp(), zoneId);
+    }
+
+    public LocalDate localDate(final ZoneId zoneId) {
+        return localDateTime(zoneId).toLocalDate();
+    }
+
+    public LocalTime localTime(final ZoneId zoneId) {
+        return localDateTime(zoneId).toLocalTime();
     }
 
     public ZonedDateTime zonedDateTime() {

@@ -5,7 +5,6 @@ import euid.exception.InvalidCheckmodException;
 import euid.exception.InvalidLengthException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 import java.util.Arrays;
 
