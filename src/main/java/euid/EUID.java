@@ -52,21 +52,21 @@ public final class EUID implements Comparable<EUID> {
         if (bytes == null || bytes.length != 16) {
             throw new InvalidLengthException(bytes == null ? 0 : bytes.length, 16);
         }
-        final long hi = (((bytes[0] & 0xFFL) << 56L) //
-                | ((bytes[1] & 0xFFL) << 48L) //
-                | ((bytes[2] & 0xFFL) << 40L) //
-                | ((bytes[3] & 0xFFL) << 32L) //
-                | ((bytes[4] & 0xFFL) << 24L) //
-                | ((bytes[5] & 0xFFL) << 16L) //
-                | ((bytes[6] & 0xFFL) << 8L) //
+        final long hi = (((bytes[0] & 0xFFL) << 56) //
+                | ((bytes[1] & 0xFFL) << 48) //
+                | ((bytes[2] & 0xFFL) << 40) //
+                | ((bytes[3] & 0xFFL) << 32) //
+                | ((bytes[4] & 0xFFL) << 24) //
+                | ((bytes[5] & 0xFFL) << 16) //
+                | ((bytes[6] & 0xFFL) << 8) //
                 | (bytes[7] & 0xFFL)); //
-        final long lo = (((bytes[8] & 0xFFL) << 56L) //
-                | ((bytes[9] & 0xFFL) << 48L) //
-                | ((bytes[10] & 0xFFL) << 40L) //
-                | ((bytes[11] & 0xFFL) << 32L) //
-                | ((bytes[12] & 0xFFL) << 24L) //
-                | ((bytes[13] & 0xFFL) << 16L) //
-                | ((bytes[14] & 0xFFL) << 8L) //
+        final long lo = (((bytes[8] & 0xFFL) << 56) //
+                | ((bytes[9] & 0xFFL) << 48) //
+                | ((bytes[10] & 0xFFL) << 40) //
+                | ((bytes[11] & 0xFFL) << 32) //
+                | ((bytes[12] & 0xFFL) << 24) //
+                | ((bytes[13] & 0xFFL) << 16) //
+                | ((bytes[14] & 0xFFL) << 8) //
                 | (bytes[15] & 0xFFL)); //
         return new EUID(hi, lo);
     }
