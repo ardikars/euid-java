@@ -148,9 +148,7 @@ public final class EUID implements Comparable<EUID> {
         if (now == timestamp) {
             return createMonotonicEUID(this.hi, this.lo);
         } else {
-            return extension() //
-                    .map(ext -> EUID.createWithTimestampAndExtension(now, ext)) //
-                    .orElseGet(() -> EUID.createWithTimestamp(now));
+            return extension().flatMap(ext -> EUID.createWithTimestampAndExtension(now, ext));
         }
     }
 
